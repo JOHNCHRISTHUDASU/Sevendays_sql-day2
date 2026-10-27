@@ -19,14 +19,15 @@ FROM orders
 ORDER BY order_date DESC
 LIMIT 10;
 
---Q4. find the 10 orders with the highest total amount
+-- Q4. Find the 10 orders with the highest total amount
 
 SELECT
-    order_date,
-    COUNT(*) AS total_orders
-FROM orders
-GROUP BY order_date
-ORDER BY order_date ASC;
+    order_id,
+    SUM(quantity * unit_price) AS total_amount
+FROM order_items
+GROUP BY order_id
+ORDER BY total_amount DESC
+LIMIT 10;
 
 --Q5. count orders placed per day in chronological(ascending order) order
 
